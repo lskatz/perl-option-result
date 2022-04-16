@@ -1,6 +1,7 @@
 # perl-option-result
 
 Produce option objects like in Rust.
+Here is the Rust doc: https://doc.rust-lang.org/rust-by-example/error/multiple_error_types/option_result.html
 
 # Synopsis
 
@@ -19,6 +20,14 @@ Produce option objects like in Rust.
      my $var = $option->expect("get my something");
      print $var;
 
+
+# Installation
+
+    cpanm -l ~ Option::Option
+
+Future versions should have `Option::Factory`.
+
+    cpanm -l ~ Option::Factory
 
 # Further help
 
