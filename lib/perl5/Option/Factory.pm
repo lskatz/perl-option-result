@@ -13,6 +13,8 @@ Generates new objects that encode Option::Option objects
     use Option::Factory;
 
     my $opts = Option::Factory->new();
+    my $var  = $opts->scalar("something");
+    my $str  = $var->unwrap();
 
 =head1 AUTHOR
 

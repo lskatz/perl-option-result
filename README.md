@@ -20,6 +20,13 @@ Here is the Rust doc: https://doc.rust-lang.org/rust-by-example/error/multiple_e
      my $var = $option->expect("get my something");
      print $var;
 
+In the future I have a factory module reserved but it seems to be overkill
+
+    use Option::Factory;
+
+    my $opts = Option::Factory->new();
+    my $var  = $opts->scalar("something");
+    my $str  = $var->unwrap();
 
 # Installation
 
