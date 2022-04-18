@@ -26,7 +26,6 @@ use Tie::Array;
 our @ISA = qw(Tie::Array);
 
 # unimplemented mandatory methods
-sub FETCH { ... }
  
 sub STORESIZE { ... }   # mandatory if elements can be added/deleted
 sub EXISTS { ... }      # mandatory if exists() expected to work
@@ -71,14 +70,13 @@ Transforms the value into an Option::Option
 =cut
 
 sub STORE{
-  #die Dumper \@_;
   my($self, $index, $value) = @_;
   my $opt = Option::Option->new($value);
-  #die Dumper \@_;
-  #$$self[0]{$key} = $opt;
+  $$self[$index] = $opt;
 }
 sub FETCHSIZE { 
-  return scalar($$_[0]);
+  my ($self) = @_;
+  return scalar(@$self);
 }
 
 sub TIEARRAY { 
@@ -86,6 +84,10 @@ sub TIEARRAY {
   return bless [ ], $class;
 }
 
+sub FETCH {
+  my($self, $index) = @_;
+  return $$self[$index];
+}
 
 1;
 
