@@ -5,36 +5,63 @@ Here is the Rust doc: https://doc.rust-lang.org/rust-by-example/error/multiple_e
 
 # Synopsis
 
-     use Option::Option;
+```perl
+use Option::Option;
 
-     my $option = Option::Option->new("something");
+my $option = Option::Option->new("something");
 
-     # This croaks:
-     print $option;
+# This croaks:
+print $option;
 
-     # This works
-     my $var = $option->unwrap();
-     print $var;
+# This works
+my $var = $option->unwrap();
+print $var;
 
-     # This also works and has a helpful error message
-     my $var = $option->expect("get my something");
-     print $var;
+# This also works and has a helpful error message
+my $var = $option->expect("get my something");
+print $var;
+```
 
-In the future I have a factory module reserved but it seems to be overkill
+Hashes and arrays
 
-    use Option::Factory;
+```perl
+# Make a hash where all values are automatically made into options
+tie my %hash, 'Option::Hash';
+$hash{foo} = "bar";
+# dies if you print directly
+print $hash{foo};
+# this works
+print $hash{foo}->unwrap();
 
-    my $opts = Option::Factory->new();
-    my $var  = $opts->scalar("something");
-    my $str  = $var->unwrap();
+# Make an array but this is mainly incomplete
+tie my @arr, 'Option::Array';
+$arr[0] = "bar";
+# dies if you print directly
+print $arr[0];
+# This works
+print $arr[0]->unwrap();
+```
+
+In the future I have a factory module reserved but I have no immediate plans.
+Help is welcome if you wish to contribute in the issues tab on github.
+
+```perl
+use Option::Factory;
+
+my $opts = Option::Factory->new();
+my $var  = $opts->scalar("something");
+my $str  = $var->unwrap();
+```
 
 # Installation
 
     cpanm -l ~ Option::Option
 
-Future versions should have `Option::Factory`.
+## From source
 
-    cpanm -l ~ Option::Factory
+    git clone https://github.com/lskatz/perl-option-result
+    cd perl-option-result
+    cpanm -l ~ .
 
 # Further help
 
@@ -44,4 +71,8 @@ Use perldoc for up to date documentation.
 
 ```shell
 perldoc lib/perl/Option/Option.pm
+perldoc lib/perl/Option/Hash.pm
+perldoc lib/perl/Option/Array.pm
+perldoc lib/perl/Option/Factory.pm
 ```
+
