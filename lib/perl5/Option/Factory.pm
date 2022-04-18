@@ -75,8 +75,28 @@ sub scalar{
   return $opt;
 }
 
+=pod
+
+=over
+
+=item $factory->hash(\%hash)
+
+Returns a new hash ref. If %hash is given, then copies
+the hash. If no %hash is given, then a blank hash ref
+is returned.
+
+=back
+
+=cut
+
 sub hash{
-  ...;
+  my($self, $hash) = @_;
+  if(!defined $hash){
+    $hash = {};
+  }
+  my %new_hash = %$hash;
+  tie %new_hash, 'Option::Hash';
+  return \%new_hash;
 }
 sub array{
   ...;

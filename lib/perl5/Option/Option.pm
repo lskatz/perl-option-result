@@ -16,7 +16,7 @@ similar to Rust
     my $option = Option::Option->new("something");
 
     # This croaks:
-    print $var;
+    print $option;
 
     # This works
     my $var = $option->unwrap();
