@@ -42,7 +42,7 @@ use overload '""' => 'toString';
 use Exporter qw/import/;
 
 use version;
-our $VERSION = version->declare("0.1");
+our $VERSION = version->declare("0.2");
 
 =pod
 
