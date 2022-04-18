@@ -10,7 +10,7 @@ Here is the Rust doc: https://doc.rust-lang.org/rust-by-example/error/multiple_e
      my $option = Option::Option->new("something");
 
      # This croaks:
-     print $var;
+     print $option;
 
      # This works
      my $var = $option->unwrap();
